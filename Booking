@@ -1,0 +1,67 @@
+package busResv;
+import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+public class Booking  {
+	static int bookingCounter = 1121;
+	
+	int BookingNumber;
+	String passengerName;
+	int busNo; 
+	Date date;
+	
+	
+	Booking() {
+		BookingNumber = bookingCounter++;
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter name of passenger: ");
+		passengerName = scanner.next();
+		System.out.println("Enter bus no : ");
+		busNo = scanner.nextInt(); 
+		System.out.println("Enter date dd-mm-yyyy ");
+		String dateInput = scanner.next();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		
+		try {
+			date = dateFormat.parse(dateInput);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean isAvailable(ArrayList <Booking> bookings, ArrayList <bus> buses) {
+		int capacity = 0;
+		for(bus Bus: buses) {
+			if(Bus.getbusNo() == busNo)
+				capacity = Bus.getbusNo();
+		}
+		int booked =0;
+		for(Booking b: bookings) {
+			if(b.busNo == busNo && b.date.equals(date)) {
+				booked++;
+			}
+		}
+		
+		return booked<capacity?true:false;
+	}
+	
+	public static void cancelBooking(ArrayList<Booking> bookings) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter booking number to cancel: ");
+		int bno = scanner.nextInt();
+		
+		for(Booking c : bookings) {
+			if(c.BookingNumber==bno) {
+				bookings.remove(c);
+				System.out.println("Booking" + bno + " is cancelled successfully.");
+				return;
+			}
+		}
+		System.out.println("booking Number is Not found");
+		
+		
+	}
+}
