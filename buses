@@ -1,0 +1,59 @@
+package busResv;
+
+public class bus {
+	private int busNO;
+	private String driverName;
+	private boolean ac;
+	private int  capacity; // get and set
+	
+	
+	bus(int no, String driver, boolean ac, int cap){
+		this.busNO = no;
+		this.driverName = driver;
+		this.ac = ac;
+		this.capacity = cap; 
+		 
+	}
+	
+	public int getbusNo() {
+		return busNO;
+	}
+	
+	public boolean isAC() {
+		return ac;
+		
+	}
+		
+	public int getCapacity() { // accessor method 
+		return capacity;
+	}
+	
+	public  void setAC(boolean val) {
+		ac = val; 
+		
+	}
+	
+	public void setbusNO(int busno) {
+		busNO = busno;
+	}
+	
+	
+	public  void setCapacity(int cap) { //mutator
+		capacity = cap;
+	}  
+	
+	
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void  setDriverName(String driver) {
+		 driverName = driver;
+	}
+	public void displayBusInfo() {
+		System.out.println("Bus NO: "+ busNO + " DriverName :"+ driverName + " AC: "+ ac +"  Total Capacity: "+ capacity);
+		
+	}
+
+}
